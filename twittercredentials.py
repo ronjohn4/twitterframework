@@ -1,26 +1,33 @@
 """
 Twitter Credentials
-  Dumps user credential information for user in config file.
+  Validates the credentials defined in the config file.
 
 Usage:
-  twittercredentials
-  twittercredentials  (-h | --help | -v | --version)
+  twitterconnection  <file>
+  twitterconnection  <file> --details
+  twitterconnection  (-h | --help | -v | --version)
 
 Options:
+  -d --details  Show credential details.
   -h --help     Show this screen.
   -v --version  Show version.
 """
 import json
 from docopt import docopt
-from twitterframework import getAPI
+from twitterframework import TwitterAPI
 
 if __name__ == '__main__':
-    arguments = docopt(__doc__, version='Twitter Credentials 1.0')
+    arguments = docopt(__doc__, version='Twitter Connection 1.0')
 
-api = getAPI()
+twitter_api = TwitterAPI(arguments['<file>'])
 
-credentials_json = api.VerifyCredentials()
-credentials = json.loads(str(credentials_json))
-
-for key, value in credentials.items():
-    print(key, ':', value)
+try:
+    credentials_json = twitter_api.VerifyCredentials()
+    if arguments['--details']:
+        credentials = json.loads(str(credentials_json))
+        for key, value in credentials.items():
+            print(key, ':', value)
+    else:
+        print('pass')
+except:
+    print('fail')
