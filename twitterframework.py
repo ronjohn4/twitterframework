@@ -54,6 +54,18 @@ class TwitterAPI(object):
         except:
             raise NameError('Twitter authentication failed')
 
+    def VerifyCredentials(self):
+        try:
+            api = twitter.Api(consumer_key=self.consumer_key,
+                              consumer_secret=self.consumer_secret,
+                              access_token_key=self.access_token_key,
+                              access_token_secret=self.access_token_secret)
+            credentials = api.VerifyCredentials()
+            return credentials
+        except:
+            raise NameError('Twitter VerifyCredentials failed')
+
+
     def SaveConfig(self, config_file=None):
         """SaveConfg - Save the currently defined config information.  Use the current config file is defined or pass
         in a new file name. """
