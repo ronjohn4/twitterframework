@@ -3,9 +3,9 @@ Twitter Credentials
   Validates the credentials defined in the config file.
 
 Usage:
-  twitterconnection  <file>
-  twitterconnection  <file> --details
-  twitterconnection  (-h | --help | -v | --version)
+  twittercredentials  <file>
+  twittercredentials  <file> --details
+  twittercredentials  (-h | --help | -v | --version)
 
 Options:
   -d --details  Show credential details.
